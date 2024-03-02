@@ -31,7 +31,7 @@
                 <td v-text="user.name"></td>
                 <td v-text="user.id_card_number"></td>
                 <td v-text="user.age"></td>
-                <td v-text="genres[user.genre-1]"></td>
+                <td v-text="user.genre"></td>
                 <td v-text="user.email"></td>
               <td>
                 <router-link :to="{path: '/users/'+user.id}" class="btn btn-info">
@@ -57,13 +57,12 @@
 <script>
   import axios from 'axios' //Esto nos ayudará a realiza las peticiones HTTP
   import {confirmarAlerta} from '../functions'
-  import GENRES from '../App.vue'
 
   export default{
     data(){
       return {
         users: null,
-        genres: GENRES,
+        genres: null,
         isLoading: false,
       }
     },
@@ -83,15 +82,8 @@
         )
       },
 
-      getGenres(){
-        axios.get('http://127.0.0.1:8000/api/genres').then(
-          res => this.genres = res.data
-        )
-      },
-
       preload(){
         this.getUsers()
-        this.getGenres()
         this.isLoading = false
       },
 

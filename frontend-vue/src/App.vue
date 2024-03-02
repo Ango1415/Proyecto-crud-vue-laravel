@@ -40,7 +40,7 @@
   export default{
 
     mounted(){
-      this.getGenres()
+      this.getGenresFromDB()
     },
 
     data(){
@@ -51,14 +51,18 @@
 
     // QUEDE ACÁ: ALMACENA LOS OBJETOS EN LUGAR DEL SOLO DATO
     methods:{
-      getGenres(){
+      getGenresFromDB(){
         axios.get('http://127.0.0.1:8000/api/genres').then(
           res => res.data.forEach(genre => {
-            console.log(genre.genre_name)
+            //console.log(genre.genre_name)
             this.GENRES.push(genre.genre_name)
+            console.log(this.GENRES)
           })
         )
-        console.log(this.GENRES[0])
+      },
+
+      getGenres(){
+        return this.GENRES
       }
     }
   }
