@@ -12,9 +12,18 @@ class ProductController extends Controller
     }
 
     public function showByUser($userId){
-        return Product::find($userId);
+        $results = Product::all();
+        echo gettype($results.'\n');
+        foreach($results as $product){
+            echo gettype($product.'\n');
+            echo ($product.'\n');
+            //if($product['user'] == $userId){
+            //    echo $product;
+            //}
+        }
+        return 'hola';
     }
-    
+
     public function index(){
         return Product::all();
     }

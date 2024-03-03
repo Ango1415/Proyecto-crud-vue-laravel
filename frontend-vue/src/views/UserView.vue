@@ -49,7 +49,7 @@
               <th>Name</th>
               <th>Bar Code</th>
               <th>Price</th>
-              <th></th>
+              <th> </th>
             </tr>
           </thead>
           <tbody class="table-group-divider" id="content">
@@ -57,12 +57,12 @@
               <td colspan="6"><h3>Loading...</h3></td>
             </tr>
             <tr v-else v-for="product, index in this.products" :key="index">
-                <td v-text="product.id"></td>
-                <td v-text="product.name"></td>
-                <td v-text="product.bar_code"></td>
-                <td v-text="product.price"></td>
+              <td v-text="product.id"></td>
+              <td v-text="product.name"></td>
+              <td v-text="product.bar_code"></td>
+              <td v-text="product.price"></td>
               <td>
-                <router-link :to="{path: '/users/'+user.id}" class="btn btn-info">
+                <router-link :to="{path: '/products/'+product.id}" class="btn btn-info">
                     <i class="fa-solid fa-eye"></i>
                 </router-link>
                 &nbsp;
