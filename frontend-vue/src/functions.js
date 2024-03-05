@@ -41,7 +41,7 @@ export function enviarSolicitud(methodRequest, paramsRequest, urlRequest, msgReq
         method: methodRequest,  
         data: paramsRequest,
         url: urlRequest,
-
+        
     }).then( function(res) {
         let status = res.status;
         console.log(`${status} \n`)

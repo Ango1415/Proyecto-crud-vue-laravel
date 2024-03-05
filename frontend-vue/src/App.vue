@@ -16,13 +16,6 @@
             > Usuarios
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link 
-            to="/" 
-            class="nav-link"
-            > Productos
-          </router-link>
-        </li>
       </ul>
     </div>
   </div>

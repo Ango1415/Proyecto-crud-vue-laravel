@@ -39,6 +39,13 @@
       </div>
     </div>
   </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h3>Products</h3>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
       <div class="table-responsive">
@@ -66,11 +73,11 @@
                     <i class="fa-solid fa-eye"></i>
                 </router-link>
                 &nbsp;
-                <router-link :to="{path: '/users/edit/'+user.id}" class="btn btn-warning">
+                <router-link :to="{path: '/products/edit/'+product.id}" class="btn btn-warning">
                     <i class="fa-solid fa-edit"></i>
                 </router-link>
                 &nbsp;
-                <button class="btn btn-danger" v-on:click="$event => deleteUser(user.id)">
+                <button class="btn btn-danger" v-on:click="$event => deleteProduct(product.id)">
                   <i class="fa-solid fa-trash"></i>
                 </button>
               </td>
@@ -83,7 +90,7 @@
 </template>
 
 <script>
-  import { mostrarAlerta, enviarSolicitud } from '../functions'
+  import { mostrarAlerta, enviarSolicitud, confirmarAlerta } from '../functions'
   import {useRoute} from 'vue-router'
   import axios from 'axios'
 
@@ -101,7 +108,7 @@
         url: 'http://127.0.0.1:8000/api/users',
 
         products: null,
-        url_products: 'http://127.0.0.1:8000/api/products',
+        url_products: 'http://127.0.0.1:8000/api/products/',
         isLoading: false,
       }
     },
@@ -130,7 +137,7 @@
       },
 
       getProducts(){
-        let url_products_user = `${this.url_products}?user-id=${this.id}`
+        let url_products_user = `${this.url_products}user/${this.id}`
         axios.get(url_products_user).then(res => {
           this.products = res.data
           this.isLoading = false
@@ -153,8 +160,13 @@
             genre: this.genre,
             email: this.email.trim(),
           }
-          enviarSolicitud('put', jsonData, this.url, 'User succesfully updated!!')
+          enviarSolicitud('put', jsonData, this.url_products, 'User succesfully updated!!')
         }
+      },
+
+      deleteProduct(productId){
+        confirmarAlerta(this.url_products, productId, 'Eliminar Registro', '¿Realmente desea eliminar este registro?')
+        this.isLoading=false
       },
 
     }

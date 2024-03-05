@@ -13,15 +13,17 @@ class ProductController extends Controller
 
     public function showByUser($userId){
         $results = Product::all();
-        echo gettype($results.'\n');
+        $userProducts = [];
+        //echo gettype($results.'\n');
         foreach($results as $product){
-            echo gettype($product.'\n');
-            echo ($product.'\n');
-            //if($product['user'] == $userId){
-            //    echo $product;
-            //}
+            //echo gettype($product->user.'\n');
+            //echo ($product->user.'\n');
+            if($product->user == $userId){
+                //echo $product;
+                $userProducts[] = $product;
+            }
         }
-        return 'hola';
+        return $userProducts;
     }
 
     public function index(){

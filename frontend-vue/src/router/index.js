@@ -5,6 +5,7 @@ import UserView from '../views/UserView.vue'
 import UsersCreateView from '../views/UsersCreateView.vue'
 import UsersEditView from '../views/UsersEditView.vue'
 import ProductView from '../views/ProductView.vue'
+import ProductsEditView from '../views/ProductsEditView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +48,11 @@ const router = createRouter({
       path: '/products/:id',
       name: 'product',
       component: ProductView
+    },
+    {
+      path: '/products/edit/:id',
+      name: 'products-edit',
+      component: ProductsEditView
     },
   ]
 })
